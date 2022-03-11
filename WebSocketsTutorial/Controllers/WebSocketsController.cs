@@ -1,10 +1,14 @@
 using System;
 using System.Net.WebSockets;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Twilio.TwiML;
+using Twilio.TwiML.Voice;
 
 namespace WebSocketsTutorial.Controllers
 {
@@ -20,7 +24,7 @@ namespace WebSocketsTutorial.Controllers
         }
 
         [HttpGet("/ws")]
-        public async Task Get()
+        public async System.Threading.Tasks.Task Get()
         {
           if (HttpContext.WebSockets.IsWebSocketRequest)
           {
@@ -33,11 +37,25 @@ namespace WebSocketsTutorial.Controllers
               HttpContext.Response.StatusCode = 400;
           }
         }
-        
-        private async Task Echo(WebSocket webSocket)
+
+        [HttpPost("/stream")]
+        public async Task<ContentResult> Stream()
         {
+            
+            string res = "<Response> <Start><Stream url=\"" + "wss://"+ "01153716374a.ngrok.io/ws/" + "\" /></Start><Say>I will stream the next 60 seconds of audio through your websocket</Say><Pause length="+ "\"30\"" + "/></Response> ";
+
+            return Content(res, "text/xml", Encoding.UTF8);
+
+
+        }
+        
+        private async System.Threading.Tasks.Task Echo(WebSocket webSocket)
+        {
+            
             var buffer = new byte[1024 * 4];
             var result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+            
+
             _logger.Log(LogLevel.Information, "Message received from Client");
 
             while (!result.CloseStatus.HasValue)
