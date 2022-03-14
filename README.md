@@ -10,7 +10,8 @@ Replace wss://"+ "01153716374a.ngrok.io/ws/ with your own WSS url.
 **twilio phone-numbers:update "+1XXXXXXX" --voice-url  https://ngrok_url/stream**
 
 * Run ngrok like this if you are testing locally - I am assuming you are using port 5001
-ngrok http https://localhost:5001 -host-header="localhost:5001"
+
+**ngrok http https://localhost:5001 -host-header="localhost:5001"**
 
 
 
