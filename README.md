@@ -1,46 +1,18 @@
-# Welcome to Understanding WebSockets with ASP.NET Core Tutorial 👋
-[![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](sahansera.dev)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](#)
-[![Twitter: _SahanSera](https://img.shields.io/twitter/follow/_SahanSera.svg?style=social)](https://twitter.com/_SahanSera)
-
-![](https://sahansera.dev/static/3ca403c56afd23af37206f10fe96ff47/4b190/understanding-websockets-with-aspnetcore-1.jpg)
-
-> Demo code of blog post from [https://sahansera.dev/understanding-websockets-with-aspnetcore-5/](https://sahansera.dev/understanding-websockets-with-aspnetcore-5/)
-
-### 🏠 [Homepage](https://sahansera.dev)
-
-## Usage
-
-```sh
-Open up Visual Studio and Press F5
-```
-
-## Questions? Bugs? Suggestions for Improvement?
-Having any issues or troubles getting started? [Get in touch with me](https://sahansera.dev/contact/) 
-
-## Support
-Has this Project helped you learn something new? or helped you at work? Do Consider Supporting.
-
-<a href="https://www.buymeacoffee.com/sahan" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" width="200"  ></a>
-
-or Give a ⭐️ if this project helped you!
-
-## Share it!
-Please share this Repository within your developer community, if you think that this would make a difference! Cheers.
-
-## Author
-
-👤 **Sahan Serasinghe**
-
-* Website: https://sahansera.dev
-* Twitter: [@_SahanSera](https://twitter.com/_SahanSera)
-* Github: [@sahansera](https://github.com/sahansera)
-* LinkedIn: [@sahanserasinghe](https://linkedin.com/in/sahanserasinghe)
-
-## Contributing
-PRs are welcome! Thank you
+﻿We plan to use C# rather than node as described in https://www.twilio.com/blog/live-transcribing-phone-calls-using-twilio-media-streams-and-google-speech-text
 
 
 
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+* Line 55 - WebSocketController.cs
+Replace wss://"+ "01153716374a.ngrok.io/ws/ with your own WSS url.
+
+* Update your Twilio Phone Voice URL
+twilio phone-numbers:update "+1XXXXXXX" --voice-url  https://ngrok_url/stream
+
+* Run ngrok like this if you are testing locally - I am assuming you are using port 5001
+ngrok http https://localhost:5001 -host-header="localhost:5001"
+
+
+
+
+
+

@@ -1,16 +1,13 @@
 using System;
 using System.Net.WebSockets;
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Twilio.TwiML;
-using Twilio.TwiML.Voice;
 
-namespace WebSocketsTutorial.Controllers
+
+namespace WebSocketsAudioStreaming.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -23,8 +20,14 @@ namespace WebSocketsTutorial.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Websocket requests should be routed here for streameing
+        /// </summary>
+        /// <returns></returns>
+        ///
+
         [HttpGet("/ws")]
-        public async System.Threading.Tasks.Task Get()
+        public async Task Get()
         {
           if (HttpContext.WebSockets.IsWebSocketRequest)
           {
@@ -38,6 +41,13 @@ namespace WebSocketsTutorial.Controllers
           }
         }
 
+        /// <summary>
+        /// This method just returns the websocket URL for audio stream (/ws)
+        /// </summary>
+        /// <returns></returns>
+        ///
+
+
         [HttpPost("/stream")]
         public async Task<ContentResult> Stream()
         {
@@ -46,10 +56,10 @@ namespace WebSocketsTutorial.Controllers
 
             return Content(res, "text/xml", Encoding.UTF8);
 
-
         }
-        
-        private async System.Threading.Tasks.Task Echo(WebSocket webSocket)
+
+
+        private async Task Echo(WebSocket webSocket)
         {
             
             var buffer = new byte[1024 * 4];
